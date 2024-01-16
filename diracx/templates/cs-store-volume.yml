@@ -1,4 +1,4 @@
-{{ if .Values.developer.enabled  }}
+{{- if .Values.developer.enabled  }}
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -8,16 +8,17 @@ metadata:
     "helm.sh/hook": pre-install
     "helm.sh/hook-weight": "-3"
     "helm.sh/resource-policy": keep
+    #pv.beta.kubernetes.io/gid: "1234"
 spec:
-  storageClassName: standard
+  storageClassName: ""
   accessModes:
     - ReadWriteMany
   capacity:
     storage: 2Gi
   hostPath:
-    path: {{ .Values.developer.localCSPath }}
+    path: /cs_store
 ---
-{{ end }}
+
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -27,11 +28,13 @@ metadata:
     "helm.sh/hook-weight": "-3"
     "helm.sh/resource-policy": keep
 spec:
-{{ if .Values.developer.enabled  }}
+  storageClassName: ""
+  {{ if .Values.developer.enabled  }}
   volumeName: pv-cs-store
-{{ end }}
+  {{ end }}
   accessModes:
     - ReadWriteMany
   resources:
     requests:
       storage: 1Gi
+{{- end }}
