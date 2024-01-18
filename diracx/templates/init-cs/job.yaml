@@ -50,15 +50,6 @@ spec:
               mountPath: /scripts
           resources:
             {{- toYaml $initCSValues.resources | nindent 12 }}
-      initContainers:
-        - name: install
-          image: busybox:1.28
-          command:
-          - chmod
-          - "777"
-          - "/cs_store"
-          volumeMounts:
-            {{ toYaml $commonVolumeMounts | nindent 12 }}
       volumes:
       - name: scripts
         configMap:

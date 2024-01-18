@@ -3,6 +3,31 @@ global:
   # without risking them being outdated.
   imagePullPolicy: Always
 
+developer:
+  enabled: false
+  # Make it possible to launch the demo without having an internet connection
+  offline: false
+  # URLs which can be used to access various components of the demo
+  urls: {}
+  # Path from which to mount source of DIRACX
+  sourcePath: /diracx_source
+  # List of packages which are mounted into developer.sourcePath and should be installed with pip install SOURCEPATH/...
+  mountedPythonModulesToInstall: []
+  # Use pip install -e for mountedPythonModulesToInstall
+  editableMountedPythonModules: true
+  # List of node modules to install
+  nodeModuleToInstall: null
+  # Image to use for the webapp if nodeModuleToInstall is set
+  nodeImage: node:16-alpine
+  # Enable collection of coverage reports (intended for CI usage only)
+  enableCoverage: false
+  # Enable automatic reloading inside uvicorn when the sources change
+  autoReload: true
+  # If set, mount the CS stored localy instead of initializing a default one
+  localCSPath: /local_cs_store
+  # The IP that the demo is running at
+  ipAlias: null
+
 init-cs:
   VOs:
     - name: diracAdmin
