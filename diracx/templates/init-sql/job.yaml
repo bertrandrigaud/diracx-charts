@@ -27,6 +27,7 @@ metadata:
   annotations:
     "helm.sh/hook": post-install,pre-upgrade
 spec:
+  backoffLimit: 100
   ttlSecondsAfterFinished: {{ .Values.global.batchJobTTL }}
   activeDeadlineSeconds: {{ .Values.global.activeDeadlineSeconds }}
   template:
