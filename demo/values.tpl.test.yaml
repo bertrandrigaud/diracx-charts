@@ -3,6 +3,9 @@ global:
   # without risking them being outdated.
   imagePullPolicy: Always
 
+  batchJobTTL: 1000
+  activeDeadlineSeconds: 1200
+
 developer:
   enabled: false
   # Make it possible to launch the demo without having an internet connection
@@ -49,6 +52,31 @@ diracx:
     DIRACX_SANDBOX_STORE_BUCKET_NAME: demo-sandboxes
     DIRACX_SANDBOX_STORE_S3_CLIENT_KWARGS: '{"endpoint_url": "http://134.158.245.99.nip.io:32000", "aws_access_key_id": "console", "aws_secret_access_key": "console123"}'
     DIRACX_SANDBOX_STORE_AUTO_CREATE_BUCKET: "true"
+
+mysql:
+  enabled: true
+  volumePermissions:
+    enabled: true
+  primary:
+    podSecurityContext:
+      fsGroup: 1001
+    livenessProbe: 
+      initialDelaySeconds: 300
+    readinessProbe:
+      initialDelaySeconds: 300
+    startupProbe:
+      initialDelaySeconds: 300
+  
+
+rabbitmq:
+  enabled: true
+  volumePermissions:
+    enabled: true
+  podSecurityContext:
+    enabled: true
+  containerSecurityContext:
+    enabled: true
+  
 
 ingress:
   enabled: true
