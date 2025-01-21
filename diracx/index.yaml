@@ -1,0 +1,356 @@
+apiVersion: v1
+entries:
+  cert-manager:
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/prerelease: "false"
+      artifacthub.io/signKey: |
+        fingerprint: 1020CF3C033D4F35BAE1C19E1226061C665DF13E
+        url: https://cert-manager.io/public-keys/cert-manager-keyring-2021-09-20-1020CF3C033D4F35BAE1C19E1226061C665DF13E.gpg
+    apiVersion: v1
+    appVersion: v1.13.1
+    created: "2025-01-21T11:27:03.334336855+01:00"
+    description: A Helm chart for cert-manager
+    digest: 0e3d871e264fa34dab225b4f16573e2e7c6cb4444301a448fcdea7f38e9e0738
+    home: https://github.com/cert-manager/cert-manager
+    icon: https://raw.githubusercontent.com/cert-manager/cert-manager/d53c0b9270f8cd90d908460d69502694e1838f5f/logo/logo-small.png
+    keywords:
+    - cert-manager
+    - kube-lego
+    - letsencrypt
+    - tls
+    kubeVersion: '>= 1.22.0-0'
+    maintainers:
+    - email: cert-manager-maintainers@googlegroups.com
+      name: cert-manager-maintainers
+      url: https://cert-manager.io
+    name: cert-manager
+    sources:
+    - https://github.com/cert-manager/cert-manager
+    urls:
+    - https://raw.githubusercontent.com/bertrandrigaud/diracx-charts/bertrand/diracx/charts/cert-manager-v1.13.1.tgz
+    version: v1.13.1
+  dex:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: "Supporting custom labels/annotations on deployment/pod"
+        - kind: added
+          description: "Add metricRelabelings, scheme, tlsConfig, bearerTokenFile and relabelings to ServiceMonitor"
+      artifacthub.io/images: |
+        - name: dex
+          image: ghcr.io/dexidp/dex:v2.36.0
+    apiVersion: v2
+    appVersion: 2.36.0
+    created: "2025-01-21T11:27:03.335318694+01:00"
+    description: OpenID Connect (OIDC) identity and OAuth 2.0 provider with pluggable
+      connectors.
+    digest: 0746b36ef7d5806e87981d70f1d314c8b400adb4f157efadd554103682ec902a
+    home: https://dexidp.io/
+    icon: https://dexidp.io/favicon.png
+    keywords:
+    - oidc
+    - oauth
+    - identity-provider
+    - saml
+    kubeVersion: '>=1.14.0-0'
+    maintainers:
+    - email: mark.sagikazar@gmail.com
+      name: sagikazarmark
+      url: https://sagikazarmark.hu
+    name: dex
+    sources:
+    - https://github.com/dexidp/dex
+    - https://github.com/dexidp/helm-charts/tree/master/charts/dex
+    type: application
+    urls:
+    - https://raw.githubusercontent.com/bertrandrigaud/diracx-charts/bertrand/diracx/charts/dex-0.14.2.tgz
+    version: 0.14.2
+  elasticsearch:
+  - apiVersion: v1
+    appVersion: 8.5.1
+    created: "2025-01-21T11:27:03.336857647+01:00"
+    description: Official Elastic helm chart for Elasticsearch
+    digest: 8a5e70ec72dc480c8a01b079bf7240722da7d017f5683178e23a745d418448ba
+    home: https://github.com/elastic/helm-charts
+    icon: https://helm.elastic.co/icons/elasticsearch.png
+    maintainers:
+    - email: helm-charts@elastic.co
+      name: Elastic
+    name: elasticsearch
+    sources:
+    - https://github.com/elastic/elasticsearch
+    urls:
+    - https://raw.githubusercontent.com/bertrandrigaud/diracx-charts/bertrand/diracx/charts/elasticsearch-8.5.1.tgz
+    version: 8.5.1
+  grafana:
+  - annotations:
+      artifacthub.io/license: AGPL-3.0-only
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/grafana/helm-charts
+        - name: Upstream Project
+          url: https://github.com/grafana/grafana
+    apiVersion: v2
+    appVersion: 10.1.1
+    created: "2025-01-21T11:27:03.340558215+01:00"
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: 4a8d3a2ce5c4274c1ac257049d5ccb8181d3b5323eb272d7c834ecbaa07c2b8d
+    home: https://grafana.net
+    icon: https://raw.githubusercontent.com/grafana/grafana/master/public/img/logo_transparent_400x.png
+    keywords:
+    - monitoring
+    - metric
+    kubeVersion: ^1.8.0-0
+    maintainers:
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    - email: rluckie@cisco.com
+      name: rtluckie
+    - email: maor.friedman@redhat.com
+      name: maorfr
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: mail@torstenwalter.de
+      name: torstenwalter
+    name: grafana
+    sources:
+    - https://github.com/grafana/grafana
+    - https://github.com/grafana/helm-charts
+    type: application
+    urls:
+    - https://raw.githubusercontent.com/bertrandrigaud/diracx-charts/bertrand/diracx/charts/grafana-6.59.4.tgz
+    version: 6.59.4
+  jaeger:
+  - apiVersion: v2
+    appVersion: 1.45.0
+    created: "2025-01-21T11:27:03.353103523+01:00"
+    dependencies:
+    - condition: provisionDataStore.cassandra
+      name: cassandra
+      repository: https://charts.helm.sh/incubator
+      version: 0.15.3
+    - condition: provisionDataStore.elasticsearch
+      name: elasticsearch
+      repository: https://helm.elastic.co
+      version: ^7.11.1
+    - condition: provisionDataStore.kafka
+      name: kafka
+      repository: https://charts.bitnami.com/bitnami
+      version: ^19.1.5
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.16.0
+    description: A Jaeger Helm chart for Kubernetes
+    digest: 71392191bb0bfa767ae3db90c23b51ddbf62a0800bdbad3eda48159b792274a5
+    home: https://jaegertracing.io
+    icon: https://camo.githubusercontent.com/afa87494e0753b4b1f5719a2f35aa5263859dffb/687474703a2f2f6a61656765722e72656164746865646f63732e696f2f656e2f6c61746573742f696d616765732f6a61656765722d766563746f722e737667
+    keywords:
+    - jaeger
+    - opentracing
+    - tracing
+    - instrumentation
+    kubeVersion: '>= 1.21-0'
+    maintainers:
+    - email: david.vonthenen@dell.com
+      name: dvonthenen
+    - email: ankit.mehta@appian.com
+      name: mehta-ankit
+    - email: michael.lorant@fairfaxmedia.com.au
+      name: mikelorant
+    - email: naseem@transit.app
+      name: naseemkullah
+    - email: me@pavelnikolov.net
+      name: pavelnikolov
+    name: jaeger
+    sources:
+    - https://hub.docker.com/u/jaegertracing/
+    type: application
+    urls:
+    - https://raw.githubusercontent.com/bertrandrigaud/diracx-charts/bertrand/diracx/charts/jaeger-0.71.14.tgz
+    version: 0.71.14
+  minio:
+  - apiVersion: v1
+    appVersion: RELEASE.2023-06-19T19-52-50Z
+    created: "2025-01-21T11:27:03.354355069+01:00"
+    description: Multi-Cloud Object Storage
+    digest: cba44c8cddcda1fb5c082dce82004a39f53cc20677ab9698a6998f01efefd8db
+    home: https://min.io
+    icon: https://min.io/resources/img/logo/MINIO_wordmark.png
+    keywords:
+    - minio
+    - storage
+    - object-storage
+    - s3
+    - cluster
+    maintainers:
+    - email: dev@minio.io
+      name: MinIO, Inc
+    name: minio
+    sources:
+    - https://github.com/minio/minio
+    urls:
+    - https://raw.githubusercontent.com/bertrandrigaud/diracx-charts/bertrand/diracx/charts/minio-5.0.11.tgz
+    version: 5.0.11
+  mysql:
+  - annotations:
+      category: Database
+      licenses: Apache-2.0
+    apiVersion: v2
+    appVersion: 8.0.34
+    created: "2025-01-21T11:27:03.357169288+01:00"
+    dependencies:
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: MySQL is a fast, reliable, scalable, and easy to use open source
+      relational database system. Designed to handle mission-critical, heavy-load
+      production applications.
+    digest: 07ee50b20cc9549d7d95181599db6d55ada87c8af3bb1556bf7dab51e81aa639
+    home: https://bitnami.com
+    icon: https://bitnami.com/assets/stacks/mysql/img/mysql-stack-220x234.png
+    keywords:
+    - mysql
+    - database
+    - sql
+    - cluster
+    - high availability
+    maintainers:
+    - name: VMware, Inc.
+      url: https://github.com/bitnami/charts
+    name: mysql
+    sources:
+    - https://github.com/bitnami/charts/tree/main/bitnami/mysql
+    urls:
+    - https://raw.githubusercontent.com/bertrandrigaud/diracx-charts/bertrand/diracx/charts/mysql-9.11.0.tgz
+    version: 9.11.0
+  opensearch:
+  - apiVersion: v2
+    appVersion: 2.8.0
+    created: "2025-01-21T11:27:03.358585596+01:00"
+    description: A Helm chart for OpenSearch
+    digest: 96844bf4187ed550879dac2f086f367829fa0f5d9fa1ed203c0a5a8023dba8c5
+    maintainers:
+    - name: DandyDeveloper
+    - name: bbarani
+    - name: gaiksaya
+    - name: peterzhuamazon
+    - name: prudhvigodithi
+    - name: TheAlgo
+    name: opensearch
+    type: application
+    urls:
+    - https://raw.githubusercontent.com/bertrandrigaud/diracx-charts/bertrand/diracx/charts/opensearch-2.13.1.tgz
+    version: 2.13.1
+  opentelemetry-collector:
+  - apiVersion: v2
+    appVersion: 0.85.0
+    created: "2025-01-21T11:27:03.360695901+01:00"
+    description: OpenTelemetry Collector Helm chart for Kubernetes
+    digest: 448d6d53917f30795e757f493e7620b4067164a747d658d8a7d2ade9b7b2a535
+    home: https://opentelemetry.io/
+    icon: https://opentelemetry.io/img/logos/opentelemetry-logo-nav.png
+    maintainers:
+    - name: dmitryax
+    - name: TylerHelmuth
+    name: opentelemetry-collector
+    sources:
+    - https://github.com/open-telemetry/opentelemetry-collector
+    - https://github.com/open-telemetry/opentelemetry-collector-contrib
+    type: application
+    urls:
+    - https://raw.githubusercontent.com/bertrandrigaud/diracx-charts/bertrand/diracx/charts/opentelemetry-collector-0.68.0.tgz
+    version: 0.68.0
+  prometheus:
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/prometheus-community/helm-charts
+        - name: Upstream Project
+          url: https://github.com/prometheus/prometheus
+    apiVersion: v2
+    appVersion: v2.47.0
+    created: "2025-01-21T11:27:03.368699935+01:00"
+    dependencies:
+    - condition: alertmanager.enabled
+      name: alertmanager
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 1.6.*
+    - condition: kube-state-metrics.enabled
+      name: kube-state-metrics
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 5.13.*
+    - condition: prometheus-node-exporter.enabled
+      name: prometheus-node-exporter
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 4.23.*
+    - condition: prometheus-pushgateway.enabled
+      name: prometheus-pushgateway
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 2.4.*
+    description: Prometheus is a monitoring system and time series database.
+    digest: e184541ca6086fbfa6ec7d294febf6a6329e1835dab0b4c4de9f0803581a8c4c
+    home: https://prometheus.io/
+    icon: https://raw.githubusercontent.com/prometheus/prometheus.github.io/master/assets/prometheus_logo-cb55bb5c346.png
+    keywords:
+    - monitoring
+    - prometheus
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - email: gianrubio@gmail.com
+      name: gianrubio
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: naseem@transit.app
+      name: naseemkullah
+    - email: rootsandtrees@posteo.de
+      name: zeritti
+    name: prometheus
+    sources:
+    - https://github.com/prometheus/alertmanager
+    - https://github.com/prometheus/prometheus
+    - https://github.com/prometheus/pushgateway
+    - https://github.com/prometheus/node_exporter
+    - https://github.com/kubernetes/kube-state-metrics
+    type: application
+    urls:
+    - https://raw.githubusercontent.com/bertrandrigaud/diracx-charts/bertrand/diracx/charts/prometheus-25.0.0.tgz
+    version: 25.0.0
+  rabbitmq:
+  - annotations:
+      category: Infrastructure
+      licenses: Apache-2.0
+    apiVersion: v2
+    appVersion: 3.12.2
+    created: "2025-01-21T11:27:03.372541562+01:00"
+    dependencies:
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: RabbitMQ is an open source general-purpose message broker that is
+      designed for consistent, highly-available messaging scenarios (both synchronous
+      and asynchronous).
+    digest: fa877886c4a3b8749df84ffa6aad87ba7e7c2f9187b8f05f0d452872ab76244b
+    home: https://bitnami.com
+    icon: https://bitnami.com/assets/stacks/rabbitmq/img/rabbitmq-stack-220x234.png
+    keywords:
+    - rabbitmq
+    - message queue
+    - AMQP
+    maintainers:
+    - name: VMware, Inc.
+      url: https://github.com/bitnami/charts
+    name: rabbitmq
+    sources:
+    - https://github.com/bitnami/charts/tree/main/bitnami/rabbitmq
+    urls:
+    - https://raw.githubusercontent.com/bertrandrigaud/diracx-charts/bertrand/diracx/charts/rabbitmq-12.0.10.tgz
+    version: 12.0.10
+generated: "2025-01-21T11:27:03.330347433+01:00"
