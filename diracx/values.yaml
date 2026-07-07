@@ -370,7 +370,7 @@ opensearch:
 ##########################
 
 seaweedfs:
-  enabled: true
+  enabled: false
   mode: "mini"
   persistence:
     size: 1Gi
